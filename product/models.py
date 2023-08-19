@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 
 from datetime import timezone
 
+from django.utils.translation import gettext_lazy as _
+
 # Create your models here.
 FLAG_TYPES = (
     ('Sale','Sale'),
@@ -12,25 +14,27 @@ FLAG_TYPES = (
 )
 
 class Product(models.Model):
-    name = models.CharField(max_length=120)
-    flag = models.CharField(max_length=10,choices=FLAG_TYPES)
-    image = models.ImageField(upload_to='produts')
-    price = models.FloatField(max_length=20)
-    sku = models.CharField(max_length=12)
-    subtitle = models.TextField(max_length=40000)
-    description = models.TextField(max_length=400000)
-    quantity = models.IntegerField()
-    brand = models.ForeignKey('Brand',related_name='product_brand',on_delete=models.SET_NULL, null=True)
+    name = models.CharField(_('Name'),max_length=120)
+    flag = models.CharField(_('Flag'),max_length=10,choices=FLAG_TYPES)
+    image = models.ImageField(_('Image')upload_to='produts')
+    price = models.FloatField(_('Price'),max_length=20)
+    sku = models.CharField(_('SKU'),max_length=12)
+    subtitle = models.TextField(_('Subtitle'),max_length=40000)
+    description = models.TextField(_('Description'),max_length=400000)
+    quantity = models.IntegerField(_('Quantity'))
+    brand = models.ForeignKey('Brand',verbose_name=_('Brand'),related_name='product_brand',on_delete=models.SET_NULL, null=True)
 
 
 class ProductImages(models.Model):
+    product = models.ForeignKey(Product,verbose_name=_('Product'),related_name='product_image',on_delete=models.CASCADE)
+    image = models.ImageField(_('Image'),upload_to='product_images')
 
 
 
 
 class Brand(models.Model):
-    name = models.CharField(max_length=100)
-    Image = models.ImageField(upload_to='brands')
+    name = models.CharField(_('Name'),max_length=100)
+    Image = models.ImageField(_('Image'),upload_to='brands')
 
     def __str__(self):
         return self.name
@@ -38,11 +42,11 @@ class Brand(models.Model):
 
 
 class Review(models.Model):
-    user = models.ForeignKey(User,related_name='review_author',on_delete=models.SET_NULL,null=True)
-    product = models.ForeignKey(Product,related_name='review_product',on_delete=models.CASCADE)
-    rate = models.IntegerField()
-    review = models.CharField(max_length=100)
-    created_at = models.DateTimeField(default=timezone.now)
+    user = models.ForeignKey(User,verbose_name=_('User'),related_name='review_author',on_delete=models.SET_NULL,null=True)
+    product = models.ForeignKey(Product,verbose_name=_('Product'),related_name='review_product',on_delete=models.CASCADE)
+    rate = models.IntegerField(_('Rate'))
+    review = models.CharField(_('Review'),max_length=100)
+    created_at = models.DateTimeField(_('Created_at'),default=timezone.now)
 
 
 
