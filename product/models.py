@@ -1,12 +1,8 @@
 from django.db import models
-
 from django.contrib.auth.models import User
-
 from django.utils import timezone
-
 from django.utils.translation import gettext_lazy as _
 from taggit.managers import TaggableManager
-
 from django.utils.text import slugify
 
 
@@ -37,7 +33,6 @@ class Product(models.Model):
     
     def save(self, *args, **kwargs):
        self.slug = slugify(self.name)
-       
        super(Product, self).save(*args, **kwargs) # Call the real save() method
 
    
@@ -71,7 +66,8 @@ class Review(models.Model):
 
     def __str__(self):
         return f"{self.user}-{self.product}"
-
+    
+   
 
 
 
