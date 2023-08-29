@@ -48,13 +48,13 @@
                             </div>
                             <ul class="details-preview"> 
                                 {% for image in object.product_image.all %}
-                                <li><img src="{{image.image.url}}" alt="product"></li>
+                                <li><img src="{{image.image.url}}" style="width:178px;height:178px" alt="product"></li>
                                 {% endfor %}
                                
                             </ul>
                             <ul class="details-thumb">
                                 {% for image in object.product_image.all %}
-                                <li><img src="{{image.image.url}}" alt="product"></li>
+                                <li><img src="{{image.image.url}}" style="width:178px;height:178px" alt="product"></li>
                                 {% endfor %}
                                
                             </ul>
