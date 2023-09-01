@@ -6,7 +6,6 @@ from taggit.managers import TaggableManager
 from django.utils.text import slugify
 
 
-
 # Create your models here.
 FLAG_TYPES = (
     ('Sale','Sale'),
@@ -14,12 +13,12 @@ FLAG_TYPES = (
     ('Feature','Feature'),
 )
 
-class Product(models.Model):
+class Product(models.Model):   
     name = models.CharField(_('Name'),max_length=120)
     flag = models.CharField(_('Flag'),max_length=10,choices=FLAG_TYPES)
     image = models.ImageField(_('Image'),upload_to='produts')
     price = models.FloatField(_('Price'),max_length=20)
-    sku = models.CharField(_('SKU'),max_length=12)
+    sku = models.CharField(_('SKU'),max_length=12)   
     subtitle = models.TextField(_('Subtitle'),max_length=40000)
     description = models.TextField(_('Description'),max_length=400000)
     quantity = models.IntegerField(_('Quantity'))
@@ -46,15 +45,10 @@ class ProductImages(models.Model):
 
 
 
-
 class Brand(models.Model):
     name = models.CharField(_('Name'),max_length=100)
     image = models.ImageField(_('Image'),upload_to='brands')
     slug = models.SlugField(null=True,blank=True)
-
-
-   
-
     def __str__(self):
         return self.name
     
@@ -63,8 +57,6 @@ class Brand(models.Model):
        super(Brand, self).save(*args, **kwargs) # Call the real save() method
 
     
-
-
 class Review(models.Model):
     user = models.ForeignKey(User,verbose_name=_('User'),related_name='review_author',on_delete=models.SET_NULL,null=True)
     product = models.ForeignKey(Product,verbose_name=_('Product'),related_name='review_product',on_delete=models.CASCADE)
@@ -79,5 +71,3 @@ class Review(models.Model):
    
 
 
-
-    

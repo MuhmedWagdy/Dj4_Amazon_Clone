@@ -9,13 +9,9 @@
   
 {% block body %}
 
-
-
         <!--=====================================
                     PRODUCT VIEW END
         =======================================-->
-
-
         <!--=====================================
                     BANNER PART START
         =======================================-->
@@ -24,7 +20,7 @@
                 <h2>product simple</h2>
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item"><a href="shop-4column.html">shop-4column</a></li>
+                    <li class="breadcrumb-item"><a href="shop-4column.html">Product Detail</a></li>
                     <li class="breadcrumb-item active" aria-current="page">product-simple</li>
                 </ol>
             </div>
@@ -32,8 +28,6 @@
         <!--=====================================
                     BANNER PART END
         =======================================-->
-
-
         <!--=====================================
                 PRODUCT DETAILS PART START
         =======================================-->
@@ -49,14 +43,12 @@
                             <ul class="details-preview"> 
                                 {% for image in object.product_image.all %}
                                 <li><img src="{{image.image.url}}" style="width:178px;height:178px" alt="product"></li>
-                                {% endfor %}
-                               
+                                {% endfor %}                             
                             </ul>
                             <ul class="details-thumb">
                                 {% for image in object.product_image.all %}
                                 <li><img src="{{image.image.url}}" style="width:178px;height:178px" alt="product"></li>
-                                {% endfor %}
-                               
+                                {% endfor %}                            
                             </ul>
                         </div>
                     </div>
@@ -76,8 +68,7 @@
                                 <i class="icofont-star"></i>
                                 <a href="#">(3 reviews)</a>
                             </div>
-                            <h3 class="details-price">
-                                
+                            <h3 class="details-price">                              
                                 <span>{{object.price}}</span>
                             </h3>
                             <p class="details-desc">{{object.subtitle}}</p>
@@ -86,7 +77,6 @@
                                 <ul class="details-tag-list">
                                     {% for tag in object.tags.all %}
                                     <li><a href="#">{{tag}}</a></li>
-
                                     {% endfor  %}
                                     
                                 </ul>
@@ -115,8 +105,7 @@
                                 <a class="details-wish wish" href="#" title="Add Your Wishlist">
                                     <i class="icofont-heart"></i>
                                     <span>add to wish</span>
-                                </a>
-                               
+                                </a>                            
                             </div>
                         </div>
                     </div>
@@ -126,7 +115,6 @@
         <!--=====================================
                 PRODUCT DETAILS PART END
         =======================================-->
-
 
         <!--=====================================
                   PRODUCT TAB PART START
@@ -165,11 +153,9 @@
                                         <li class="icofont-ui-{% if review.rate > 4 %}rating{% else %}rate-blank{% endif %}"></li>
                                     </ul>
                                     <p class="review-desc">{{review.review}}</p>
-                                 
-                                   
+                                                           
                                   </li>
-                                {% endfor %}
-                               
+                                {% endfor %}                              
                             </ul>
                         </div>
                         <div class="product-details-frame">
@@ -216,7 +202,6 @@
         <!--=====================================
                     PRODUCT TAB PART END
         =======================================-->
-
 
         <!--=====================================
                  PRODUCT RELATED PART START
@@ -298,13 +283,10 @@
         <!--=====================================
                  PRODUCT RELATED PART END
         =======================================-->
-
-
         <!--=====================================
                     NEWSLETTER PART START
 
         =======================================-->
-
-
         {% endblock body %}
       
+

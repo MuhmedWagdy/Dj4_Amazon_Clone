@@ -6,6 +6,12 @@ from .models import Product,Brand,ProductImages,Review
 
 
 
+def queryset_debug(request):
+
+    data = Product.objects.all()
+    return render(request,'product/debug.html',{'data':data})
+
+
 
 
 class ProductList(ListView):
