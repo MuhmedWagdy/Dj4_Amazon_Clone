@@ -36,7 +36,7 @@ def queryset_debug(request):
 
     # data = Product.objects.aaggregate(Sum='quantaity')
     # data = Product.objects.aaggregate(Avg=Price)
-
+    data = Product.objects.annotate(price_with_tax=F('price')*1.5)
 
 
 
