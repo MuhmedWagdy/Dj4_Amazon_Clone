@@ -27,7 +27,6 @@ class Product(models.Model):
     slug = models.SlugField(null=True,blank=True)
 
     def __str__(self):
-
         return self.name
     
     def save(self, *args, **kwargs):

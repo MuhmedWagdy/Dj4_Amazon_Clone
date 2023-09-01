@@ -37,13 +37,6 @@ def queryset_debug(request):
     # data = Product.objects.aaggregate(Sum='quantaity')
     # data = Product.objects.aaggregate(Avg=Price)
     data = Product.objects.annotate(price_with_tax=F('price')*1.5)
-
-
-
-
-
-
-
     return render(request,'product/debug.html',{'data':data})
 
 
@@ -66,6 +59,10 @@ class ProductDetail(DetailView):
 
 class BrandList(ListView):
     model = Brand
+
+    queryset =  Brand.objects.annotate(product_count=Count('product_brand'))
+
+
 
 
 class BrandDeatil(ListView):
