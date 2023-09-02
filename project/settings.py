@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     "taggit",
     "debug_toolbar",
     'product',
+    'settings',
 ]
 
 
