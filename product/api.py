@@ -3,6 +3,8 @@ from rest_framework.response import Response
 from .serializers import ProductListSerilizer,ProductDetailSerilizer,BrandListSerilizer,BrandDetailSerilizer
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import filters
+from .mypagination import MyPagination
+from rest_framework.permissions import IsAuthenticated
 from .models import Product,Brand
 from rest_framework import generics
 
@@ -33,6 +35,10 @@ class ProductListApi(generics.ListCreateAPIView):
     search_fields = ['name','subtitle','description']
     ordering_fields = ['price', 'quantity']
     filterset_class = ProductFilter
+    pagination_class = MyPagination
+    permission_classes = [IsAuthenticated]
+
+
 
 
 
