@@ -1,6 +1,5 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-
 from .serializers import ProductListSerilizer,ProductDetailSerilizer,BrandListSerilizer,BrandDetailSerilizer
 from .models import Product,Brand
 from rest_framework import generics

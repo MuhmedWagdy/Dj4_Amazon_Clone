@@ -27,6 +27,12 @@ class Product(models.Model):
     brand = models.ForeignKey('Brand',verbose_name=_('Brand'),related_name='product_brand',on_delete=models.SET_NULL, null=True)
     slug = models.SlugField(null=True,blank=True)
 
+
+
+   
+
+        
+
     def __str__(self):
         return self.name
     
@@ -38,7 +44,7 @@ class Product(models.Model):
             return result
         return avg['rate_avg']
 
-    
+  
 
 
 
@@ -82,5 +88,7 @@ class Review(models.Model):
         return f"{self.user}-{self.product}"
     
    
+
+
 
 

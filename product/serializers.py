@@ -1,18 +1,11 @@
 from rest_framework import serializers
-
 from .models import Product,Brand,Review
-
 from django.db.models.aggregates import Avg
 
-class BrandListSerilizer(serializers.ModelSerializer):
-    
+class BrandListSerilizer(serializers.ModelSerializer): 
     class Meta:
         model = Brand
         fields = '__all__'
-
-
-
-
 
 class ProductListSerilizer(serializers.ModelSerializer):
     brand = serializers.StringRelatedField()
@@ -45,8 +38,7 @@ class ReviewsSerializer(serializers.ModelSerializer):
     class Meta:
         model= Review
         fields = '__all__'
-
-
+   
 
 
 class ProductDetailSerilizer(serializers.ModelSerializer):
@@ -73,12 +65,20 @@ class ProductDetailSerilizer(serializers.ModelSerializer):
         return reviews
 
 
-
-
-
-
 class BrandDetailSerilizer(serializers.ModelSerializer):
     product = ProductListSerilizer(source='product_brand',many=True)
     class Meta:
         model = Brand
         fields = '__all__'
+# -------------------------------------------------------------------------------------------------------
+
+
+
+
+        
+
+
+    
+        
+    
+    

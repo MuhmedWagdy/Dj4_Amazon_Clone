@@ -84,7 +84,28 @@ class BrandDeatil(ListView):
         return context
     
     
+   
 
 
 
 
+
+
+
+        
+           
+          
+
+        
+
+
+
+
+        
+        
+
+
+
+
+    
+    
