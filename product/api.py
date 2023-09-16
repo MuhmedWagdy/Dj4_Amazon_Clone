@@ -6,6 +6,9 @@ from rest_framework import filters
 from .models import Product,Brand
 from rest_framework import generics
 
+from .myfilter import ProductFilter
+
+
 
 @api_view(['GET'])
 def product_list_api(request):
@@ -26,9 +29,10 @@ class ProductListApi(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductListSerilizer
     filter_backends = [DjangoFilterBackend,filters.SearchFilter,filters.OrderingFilter]
-    filterset_fields = ['flag', 'brand']
+    filterset_fields = ['flag', 'brand','price']
     search_fields = ['name','subtitle','description']
     ordering_fields = ['price', 'quantity']
+    filterset_class = ProductFilter
 
 
 
