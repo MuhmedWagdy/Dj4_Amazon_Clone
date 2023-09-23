@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'dj_rest_auth',
     'product',
     'settings',
+    'orders',
 ]
 
 

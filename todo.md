@@ -29,7 +29,11 @@
 -         return render(request,'new_post.html',{'form':form})  
 -     return myform.save()
 
-                                                                                                       
+- select orders.customer_id,customer.customer_id from orders inner join customers  on  orders.customer_id = customer.customer_id    
+
+
+
+
 
 
 
