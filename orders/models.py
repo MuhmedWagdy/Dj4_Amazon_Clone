@@ -5,12 +5,11 @@ from utils.generate_code  import generate_code
 from product.models import Product
 import datetime
 
-
-
 CART_STATUS = (
     ('Inprogress','Inprogress'),
     ('Completed','Completed'),
 )
+
 class Cart(models.Model):
     user =  models.ForeignKey(User,related_name='cart_user',on_delete=models.SET_NULL,null=True,blank=True)
     status = models.CharField( max_length=50,choices=CART_STATUS)
@@ -19,9 +18,7 @@ class Cart(models.Model):
         return str(self.user)
 
 
-
-
-class Cart_Detail(models.Model):
+class CartDetail(models.Model):
    cart = models.ForeignKey(Cart,related_name='cart_detail',on_delete=models.CASCADE)
    product = models.ForeignKey(Product,related_name='cart_product',on_delete=models.SET_NULL,null=True,blank=True)
    quantity = models.IntegerField()
@@ -51,7 +48,7 @@ class Order(models.Model):
         return str(self.user)
 
 
-class Order_Detail(models.Model):
+class OrderDetail(models.Model):
    order = models.ForeignKey(Order,related_name='order_detail',on_delete=models.CASCADE)
    product = models.ForeignKey(Product,related_name='order_product',on_delete=models.SET_NULL,null=True,blank=True)
    price = models.FloatField()
