@@ -6,7 +6,7 @@ from product.models import Product
 import datetime
 
 CART_STATUS = (
-    ('Inprogress','Inprogress'),
+    ('InProgress','InProgress'),
     ('Completed','Completed'),
 )
 
