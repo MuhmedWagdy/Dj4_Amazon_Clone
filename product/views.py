@@ -37,6 +37,13 @@ def queryset_debug(request):
     # data = Product.objects.aaggregate(Avg=Price)
     data = Product.objects.annotate(price_with_tax=F('price')*1.5)
     # data = Product.objects.select_related('brand').all()
+    # data = Product.objects.filter(
+    #     Q(price__gt=80)|
+    #     Q(quantity__gt=100)
+
+    # )
+
+    # data = Product.objects.filter(price=F('quantity'))
     return render(request,'product/debug.html',{'data':data})
 
 
