@@ -10,6 +10,9 @@ def home(request):
     new_products =  Product.objects.filter(flag='New')[:10]
     reviews = Review.objects.all()[:5]
 
+   
+    
+
     return render(request,'settings/home.html',{
         'brands':brands,
         'sale_products':sale_products,
@@ -17,3 +20,7 @@ def home(request):
         'new_products':new_products,
         'reviews':reviews
     })
+   
+
+
+

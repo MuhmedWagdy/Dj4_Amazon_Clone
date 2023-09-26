@@ -31,13 +31,17 @@ def queryset_debug(request):
     # data = Product.objects.values('name','price')
    
     # data = Product.objects.defer('slug','discription')
-
+    
     data = Product.objects.values_list('name','price')
-
     # data = Product.objects.aaggregate(Sum='quantaity')
     # data = Product.objects.aaggregate(Avg=Price)
     data = Product.objects.annotate(price_with_tax=F('price')*1.5)
+    # data = Product.objects.select_related('brand').all()
     return render(request,'product/debug.html',{'data':data})
+
+
+
+
 
 
 
@@ -70,7 +74,6 @@ class BrandList(ListView):
 
 class BrandDeatil(ListView):
     model = Product
-
     template_name = 'products/brand_detail.html'
 
     def get_queryset(self):

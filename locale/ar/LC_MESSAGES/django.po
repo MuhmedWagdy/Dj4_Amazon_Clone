@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-09-24 13:56+0300\n"
-"PO-Revision-Date: 2023-09-24 14:37+0000\n"
+"PO-Revision-Date: 2023-09-24 14:41+0000\n"
 "Last-Translator:   <>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -73,7 +73,7 @@ msgstr "التقيم"
 
 #: .\product\models.py:80
 msgid "Created_at"
-msgstr "تم الانشاءا"
+msgstr "تم الانشاء"
 
 #: .\templates\base.html:179
 msgid "Home"
