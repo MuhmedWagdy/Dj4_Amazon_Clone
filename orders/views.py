@@ -33,6 +33,8 @@ def remove_from_cart(request,id):
     cart_detail = CartDetail.objects.get(id=id)
     cart_detail.delete()
 
+   
+
     return redirect('/products/')
     
     

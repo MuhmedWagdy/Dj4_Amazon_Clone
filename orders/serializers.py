@@ -4,7 +4,7 @@ from product.serializers import ProductListSerilizer
 
 class CartDetailSerializer(serializers.ModelSerializer):
     # product = ProductListSerilizer()
-    product = ProductListSerilizer.serializer_related_field()
+    product = serializers.StringRelatedField()
     class Meta:
         model = CartDetail
         fields = '__all__'
