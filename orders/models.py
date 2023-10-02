@@ -13,6 +13,8 @@ CART_STATUS = (
 class Cart(models.Model):
     user =  models.ForeignKey(User,related_name='cart_user',on_delete=models.SET_NULL,null=True,blank=True)
     status = models.CharField( max_length=50,choices=CART_STATUS)
+    coupon = models.ForeignKey('Coupon', related_name='cart_coupon' ,on_delete=models.SET_NULL,null=True,blank=True)
+    total_after_coupon= models.CharField(max_length=100,null=True,blank=True)
 
     def __str__(self):
         return str(self.user)
@@ -43,7 +45,7 @@ ORDER_STATUS = (
 
 class Order(models.Model):
     user =  models.ForeignKey(User,related_name='order_user',on_delete=models.SET_NULL,null=True,blank=True)
-    status = models.CharField( max_length=50,choices=ORDER_STATUS)
+    status = models.CharField( max_length=50,choices=ORDER_STATUS,default='Recieved')
     code = models.CharField(max_length=100,default=generate_code())
     order_time = models.DateTimeField(default=timezone.now)
     delivery_time = models.DateTimeField(null=True,blank=True)
