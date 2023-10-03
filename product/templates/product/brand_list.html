@@ -88,16 +88,15 @@
                             <p class="page-info">Showing 12 of 60 Results</p>
                             <ul class="pagination">
 
-
+                             <!-- first_page_number -->
                               {% if page_obj.has_previous %}
                                 <li class="page-item">
                                     <a class="page-link" href="?page={{page_obj.previous_page_number}}">
                                         <i class="fas fa-long-arrow-alt-left"></i>
                                     </a>
                                 </li>
-
                               {% endif %}
-
+                             <!-- end_next page_number -->
                                {% for i in paginator.page_range %}
 
                                   {% if page_obj.number == i %}
@@ -105,22 +104,11 @@
                                   {% elif i > page_obj.number|add:'-4' and i < page_obj.number|add:'4' %}
                                      <li class="page-item"><a class="page-link" href="?page={{i}}">{{i}}</a></li>
                                   {% endif %}
-
-
                                {% endfor  %}
-
-
-
-                                
-
-                              
-
-
-                                
                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                                 <li class="page-item">...</li>
                                 <li class="page-item"><a class="page-link" href="#">60</a></li>
-
+                                <!-- nextpage_number -->
                                 {% if page_obj.has_next %}
                                 <li class="page-item">
                                     <a class="page-link" href="?page={{page_obj.next_page_number}}">
@@ -128,6 +116,7 @@
                                     </a>
                                 </li>
                                 {% endif %}
+                                <!-- endnext page_number -->
 
 
                             </ul>
