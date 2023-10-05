@@ -7,7 +7,6 @@ from .mypagination import MyPagination
 from rest_framework.permissions import IsAuthenticated
 from .models import Product,Brand
 from rest_framework import generics
-
 from .myfilter import ProductFilter
 
 
