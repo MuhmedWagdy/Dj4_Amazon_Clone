@@ -1,3 +1,5 @@
+# from typing import Any
+# from django.db.models.query import _BaseQuerySet
 from django.shortcuts import render,redirect
 from django.views.generic import ListView
 from django.contrib.auth.decorators import login_required
@@ -13,7 +15,8 @@ class OrderList(LoginRequiredMixin,ListView):
     def get_queryset(self):
         queryset = super().get_queryset().filter(user=self.request.user)
         return queryset
-
+    
+    
 
 
 def add_to_cart(request):
@@ -38,16 +41,13 @@ def remove_from_cart(request,id):
     return redirect('/products/')
     
     
-
-
-
-
-
-
 @login_required
 def checkout(request):
     cart = Cart.objects.get(user=request.user,status='InProgress')
     cart_detail = CartDetail.objects.filter(cart=cart)
     return render(request,'orders/checkout.html',{'cart_detail':cart_detail})
+                  
+    
+
 
 

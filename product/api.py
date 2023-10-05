@@ -13,19 +13,22 @@ from .myfilter import ProductFilter
 
 
 @api_view(['GET'])
-def product_list_api(request):
-    products = Product.objects.all()[:20]
+def product_list_api(request):                                 
+    products = Product.objects.all()[:20]            
     data = ProductListSerilizer(products,many=True,context={'request':request}).data
     return Response({'products':data})
 
-
+    # procuct = variable for all data 
+    # data reterive data Serializer  
 
 @api_view(['GET'])
 def product_detail_api(request,product_id):
     products = Product.objects.get(id=product_id)
     data = ProductDetailSerilizer(products,context={'request':request}).data
     return Response({'products':data})
-
+   
+   #product  = product id return data 
+   # context = path image to be urls for image reterive data image url    Function Based Views
 
 class ProductListApi(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -38,9 +41,7 @@ class ProductListApi(generics.ListCreateAPIView):
     pagination_class = MyPagination
     permission_classes = [IsAuthenticated]
 
-
-
-
+   #class Based Views  use Generic ListCreatedAPIVIEW   WHEN CREATE CLASS NAME USE IP 
 
 
 class ProductDetailApi(generics.RetrieveUpdateDestroyAPIView):
@@ -48,18 +49,18 @@ class ProductDetailApi(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProductDetailSerilizer
 
 
+    #Class contain Queryset And Serilizer class from file serializer (QUERYSET == >  SERILIZER CLASS)
+
 
 class BrandListApi(generics.ListAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandListSerilizer
 
 
+
 class BrandDetailApi(generics.RetrieveAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandDetailSerilizer
-
-
-
 
 
 

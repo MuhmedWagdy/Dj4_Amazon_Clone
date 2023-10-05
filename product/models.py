@@ -7,6 +7,8 @@ from django.utils.text import slugify
 from django.db.models.aggregates import Avg
 
 
+
+
 # Create your models here.
 FLAG_TYPES = (
     ('Sale','Sale'),

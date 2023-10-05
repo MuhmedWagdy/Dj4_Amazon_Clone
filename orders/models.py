@@ -5,6 +5,7 @@ from utils.generate_code  import generate_code
 from product.models import Product
 import datetime
 
+
 CART_STATUS = (
     ('InProgress','InProgress'),  
     ('Completed','Completed'),
@@ -83,6 +84,8 @@ class Coupon(models.Model):
        week = datetime.timedelta(days=7)
        self.end_date = self.start_date + week       
        super(Coupon, self).save(*args, **kwargs) # Call the real save() method
+
+    
 
 
 
