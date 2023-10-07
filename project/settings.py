@@ -90,10 +90,6 @@ REST_FRAMEWORK = {
     #     'rest_framework.permissions.IsAuthenticated',
     # ],
 
-   
-   
-
-
 ROOT_URLCONF = 'project.urls'
 
 TEMPLATES = [
@@ -116,7 +112,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -126,7 +121,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -146,7 +140,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -155,9 +148,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
@@ -176,7 +167,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 REST_AUTH = {
     'USE_JWT': True,
     'JWT_AUTH_COOKIE': 'jwt-auth',
@@ -184,11 +174,7 @@ REST_AUTH = {
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-
-
-
 LOCALE_PATHS = ['locale']
-
 
 LANGUAGES = [
     ("ar", ("Arabic")),
