@@ -391,26 +391,26 @@
             </div>
             <ul class="cart-list">
                 {% for item in cart_detail_data %}
-                <li class="cart-item">
-                    <div class="cart-media">
-                        <a href="#"><img src="{{item.product.image.url}}" alt="product"></a>
-                        <a class="cart-delete" href="/orders/{{item.id}}/remove-from-cart"><i class="far fa-trash-alt"></i></a>
-                    </div>
-                    <div class="cart-info-group">
-                        <div class="cart-info">
-                            <h6><a href="product-single.html">{{item.product}}</a></h6>
-                            <p>Unit Price - ${{item.price}}</p>
+                    <li class="cart-item">
+                        <div class="cart-media">
+                            <a href="#"><img src="{{item.product.image.url}}" alt="product"></a>
+                            <a class="cart-delete" href="/orders/{{item.id}}/remove-from-cart"><i class="far fa-trash-alt"></i></a>
                         </div>
-                        <div class="cart-action-group">
-                            <div class="product-action">
-                                <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
-                                <input class="action-input" title="Quantity Number" type="text" name="quantity" value='{{item.quantity}}'>
-                                <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                        <div class="cart-info-group">
+                            <div class="cart-info">
+                                <h6><a href="product-single.html">{{item.product}}</a></h6>
+                                <p>Unit Price - ${{item.price}}</p>
                             </div>
-                            <h6>{{item.total}}</h6>
+                            <div class="cart-action-group">
+                                <div class="product-action">
+                                    <button class="action-minus" title="Quantity Minus"><i class="icofont-minus"></i></button>
+                                    <input class="action-input" title="Quantity Number" type="text" name="quantity" value="{{item.quantity}}">
+                                    <button class="action-plus" title="Quantity Plus"><i class="icofont-plus"></i></button>
+                                </div>
+                                <h6>{{item.total}}</h6>
+                            </div>
                         </div>
-                    </div>
-                </li> 
+                    </li> 
 
                 {%  endfor %}
          

@@ -8,7 +8,7 @@ import datetime
 
 CART_STATUS = (
     ('InProgress','InProgress'),  
-    ('Completed','Completed'),
+    ('Completed','Completed')
 )
 
 class Cart(models.Model):

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'allauth',
     'dj_rest_auth.registration',
     'allauth.account',
+    'allauth.socialaccount',
     "taggit",
     "debug_toolbar",
     'rest_framework',
