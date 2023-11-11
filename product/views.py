@@ -4,9 +4,13 @@ from .models import Product,Brand,ProductImages,Review
 from django.db.models import Q , F
 from django.db.models.aggregates import Min,Max,Sum,Count,Avg
 
+from django.views.decorators.cache import cache_page
 
 
 
+
+
+@cache_page(60 * 1)
 def queryset_debug(request):
 
     # data = Product.objects.select_related('brand').all()
@@ -35,7 +39,14 @@ def queryset_debug(request):
     data = Product.objects.values_list('name','price')
     # data = Product.objects.aaggregate(Sum='quantaity')
     # data = Product.objects.aaggregate(Avg=Price)
-    data = Product.objects.annotate(price_with_tax=F('price')*1.5)
+    # data = Product.objects.annotate(price_with_tax=F('price')*1.5)
+
+
+    data = Product.objects.all()
+
+
+
+
     # data = Product.objects.select_related('brand').all()
     # data = Product.objects.filter(
     #     Q(price__gt=80)|
