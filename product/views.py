@@ -6,6 +6,8 @@ from django.db.models.aggregates import Min,Max,Sum,Count,Avg
 
 from django.views.decorators.cache import cache_page
 
+from .tasks import send_emails
+
 
 
 
@@ -42,7 +44,8 @@ def queryset_debug(request):
     # data = Product.objects.annotate(price_with_tax=F('price')*1.5)
 
 
-    data = Product.objects.all()
+    data = Product.objects.get(id=10)
+    send_emails.delay()
 
 
 
