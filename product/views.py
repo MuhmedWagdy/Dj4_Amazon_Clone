@@ -9,6 +9,8 @@ from django.views.decorators.cache import cache_page
 from .tasks import send_emails
 
 
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 
 
@@ -106,9 +108,6 @@ class BrandDeatil(ListView):
         context["brand"] = Brand.objects.filter(slug=self.kwargs['slug']).annotate(product_count=Count('product_brand'))[0]
         return context
     
-
-
-
 def add_review(request,slug):
     product = Product.objects.get(slug=slug)
     rate = request.POST['rate']
@@ -121,7 +120,10 @@ def add_review(request,slug):
         user = request.user
     )
 
-    return redirect(f'/products/{product.slug}')
+    reviews = Review.objects.filter(product=product)
+    html = render_to_string('include/reviews_include.html',{'reviews':reviews})
+    return JsonResponse({'result':html})
+    # return redirect(f'/products/{product.slug}')
 
 
     
