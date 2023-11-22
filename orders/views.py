@@ -6,6 +6,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Order,Cart,CartDetail,OrderDetail,Coupon
 from product.models import Product
+from django.shortcuts import get_object_or_404
+import datetime
+from settings.models import DeliveryFee
+
+
+from django.http import JsonResponse
+from django.template.loader import render_to_string
 
 
 class OrderList(LoginRequiredMixin,ListView):
@@ -44,7 +51,61 @@ def remove_from_cart(request,id):
 def checkout(request):
     cart = Cart.objects.get(user=request.user,status='InProgress')
     cart_detail = CartDetail.objects.filter(cart=cart)
-    return render(request,'orders/checkout.html',{'cart_detail':cart_detail})
+    delivery_fee = DeliveryFee.objects.last().fee
+
+    if request.method =="POST":
+         coupon =  get_object_or_404(Coupon,code=request.POST['coupon_code'])
+         if coupon and coupon.quantity > 0:
+               today_date = datetime.datetime.today().date()
+
+               if today_date >= coupon.start_date and today_date <= coupon.end_date:
+                    coupon_value = cart.cart_total() * coupon.discount/100
+                    cart_total = cart.cart_total() - coupon_value
+                    coupon.quantity -=1
+                    coupon.save()
+                    cart.coupon = coupon
+                    cart.total_after_coupon = cart_total
+                    cart.save()
+                    total = delivery_fee + cart_total
+                    cart = Cart.objects.get(user=request.user,status='InProgress')
+
+
+                    
+                    html = render_to_string('include/checkout_table.html',{
+                                                                       
+                        'cart_detail':cart_detail ,
+                        'sub_total': cart_total ,
+                        'cart_total': total ,
+                        'coupon': coupon_value ,
+                        'delivery_fee' : delivery_fee
+                        })
+                    return JsonResponse({'result':html})
+
+                    # return render(request,'orders/checkout.html',{
+                    #      'cart_detail':cart_detail ,
+                    #      'cart_sub_total': cart_total ,
+                    #      'cart_total': total ,
+                    #      'coupon': coupon_value ,
+                    #      'delivery_fee' : delivery_fee
+                        
+                    # })
+               
+    # else:
+         
+    #      total = delivery_fee + cart.cart_total()
+    #      coupon = 0 ,
+
+
+
+
+    return render(request,'orders/checkout.html',{
+                         'cart_detail':cart_detail ,
+                         'sub_total': cart.cart_total() ,
+                         'cart_total':delivery_fee + cart.cart_total() ,
+                         'coupon': 0 ,
+                         'delivery_fee' : delivery_fee
+                                                  
+                                              })
                   
     
 
