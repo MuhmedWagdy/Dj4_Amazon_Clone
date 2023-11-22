@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.views.generic import ListView,DetailView
 from .models import Product,Brand,ProductImages,Review
 from django.db.models import Q , F
@@ -41,10 +41,10 @@ def queryset_debug(request):
     data = Product.objects.values_list('name','price')
     # data = Product.objects.aaggregate(Sum='quantaity')
     # data = Product.objects.aaggregate(Avg=Price)
-    # data = Product.objects.annotate(price_with_tax=F('price')*1.5)
 
+    data = Product.objects.annotate(price_with_tax=F('price')*1.5)
 
-    data = Product.objects.get(id=10)
+    # data = Product.objects.get(id=30)
     send_emails.delay()
 
 
@@ -106,6 +106,24 @@ class BrandDeatil(ListView):
         context["brand"] = Brand.objects.filter(slug=self.kwargs['slug']).annotate(product_count=Count('product_brand'))[0]
         return context
     
+
+
+
+def add_review(request,slug):
+    product = Product.objects.get(slug=slug)
+    rate = request.POST['rate']
+    review = request.POST['review']
+
+    Review.objects.create(
+        product = product ,
+        rate = rate ,
+        review = review ,
+        user = request.user
+    )
+
+    return redirect(f'/products/{product.slug}')
+
+
     
    
 

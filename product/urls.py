@@ -1,11 +1,17 @@
 from django.urls import path
-from .views import ProductList,ProductDetail,BrandList,BrandDeatil,queryset_debug
+from .views import ProductList,ProductDetail,BrandList,BrandDeatil,queryset_debug,add_review
 from .api import product_list_api , product_detail_api,ProductListApi,ProductDetailApi,BrandListApi,BrandDetailApi
+
+app_name = 'product'
 
 urlpatterns = [
     path('', ProductList.as_view()),
     path('debug', queryset_debug),
     path('<slug:slug>', ProductDetail.as_view()),
+
+    path('<slug:slug>/add-review',add_review,name='add-review'),
+
+
     path('brands/', BrandList.as_view()),
     path('brands/<slug:slug>', BrandDeatil.as_view()),
 
