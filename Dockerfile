@@ -1,5 +1,7 @@
 FROM python:3.11.6-slim-bullseye
 
+# python:3.11.6-alpine
+
 ENV PYTHONUNBUFFERED = 1
 
 RUN apt-get update && apt-get -y install gcc libpq-dev
